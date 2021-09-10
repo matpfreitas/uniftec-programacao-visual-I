@@ -1,6 +1,8 @@
 package com.uniftec.matheus.atividade3;
 
 import javax.swing.*;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.OceanTheme;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,9 +16,17 @@ public class CalculadoraLookAndFeel extends JFrame implements ActionListener {
     private JPanel pnlDados, pnlBotoes, pnlResultado, pnlTela;
 
 
+    public void addGridBag(final int x, final int y, final Component obj, final JPanel pnl) {
+
+        restricoes.gridx = x;
+        restricoes.gridy = y;
+        pnl.add(obj, restricoes);
+
+    }
+
     public CalculadoraLookAndFeel() {
 
-        this.setTitle("Cálculadora Divisão com Look and Feel");
+        this.setTitle("Calculadora Divisão com Look and Feel");
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
         this.setLocation(d.width / 4, d.height / 4);
@@ -107,15 +117,95 @@ public class CalculadoraLookAndFeel extends JFrame implements ActionListener {
 
     }
 
-    public void addGridBag(final int x, final int y, final Component obj, final JPanel pnl) {
 
-        restricoes.gridx = x;
-        restricoes.gridy = y;
-        pnl.add(obj, restricoes);
+    public void actionPerformed(ActionEvent event) {
 
-    }
+        Object origem = event.getSource();
+        if (origem == btnCalcular) {
 
-    public void actionPerformed(ActionEvent e) {
+            float valor1, valor2, resultado;
+
+            try {
+
+                valor1 = Float.parseFloat(txtValor1.getText().toString());
+
+                try {
+
+                    valor2 = Float.parseFloat(txtValor2.getText().toString());
+
+                    if (valor2 == 0) {
+
+                        JOptionPane.showMessageDialog(null, "Não existe divisão por 0!", "ERRO", JOptionPane.ERROR_MESSAGE);
+
+                        txtValor2.requestFocus();
+                        txtValor2.selectAll();
+
+                    } else {
+
+                        resultado = valor1 % valor2;
+                        lblResultado.setText("Resultado: O resto da divisão do valor 1 pelo valor 2 é" + resultado);
+                    }
+
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, "Valor 2 inválido!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    txtValor2.requestFocus();
+                    txtValor2.selectAll();
+
+                }
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, "Valor 1 inválido!", "ERRO", JOptionPane.ERROR_MESSAGE);
+                txtValor1.requestFocus();
+                txtValor1.selectAll();
+
+            }
+
+        } else if (origem == btnLimpar) {
+
+            txtValor1.setText("");
+            txtValor2.setText("");
+            lblResultado.setText("Resultado:");
+            txtValor1.requestFocus();
+
+        } else if (origem == btnFechar) {
+
+            System.exit(0);
+
+        } else if (origem == btnMetal) {
+
+            try {
+
+                MetalLookAndFeel metal = new MetalLookAndFeel();
+                OceanTheme ocean = new OceanTheme();
+                UIManager.setLookAndFeel(metal);
+                SwingUtilities.updateComponentTreeUI(this);
+
+            } catch (Exception e) {
+            }
+
+        } else if (origem == btnMotif) {
+            try {
+
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+                SwingUtilities.updateComponentTreeUI(this);
+
+            } catch (Exception e) {
+            }
+
+        } else if (origem == btnWindows) {
+
+            try {
+
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                SwingUtilities.updateComponentTreeUI(this);
+
+            } catch (Exception e) {
+            }
+
+        }
+
 
     }
 
