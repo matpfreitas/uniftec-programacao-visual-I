@@ -6,6 +6,8 @@ public class Main {
 
         CalculadoraLookAndFeel tela = new CalculadoraLookAndFeel();
         tela.setVisible(true);
+        tela.pack();
+
 
     }
 

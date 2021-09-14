@@ -37,14 +37,12 @@ public class CalculadoraLookAndFeel extends JFrame implements ActionListener {
         lblValor1 = new JLabel("Valor 1: ");
         lblValor1.setFont(f);
         txtValor1 = new JTextField(20);
-        txtValor1.setColumns(30);
         txtValor1.setFont(f);
         txtValor1.setToolTipText("Digite o primeiro valor: ");
 
         lblValor2 = new JLabel("Valor 2: ");
         lblValor2.setFont(f);
         txtValor2 = new JTextField(20);
-        txtValor2.setColumns(30);
         txtValor2.setFont(f);
         txtValor2.setToolTipText("Digite o segundo valor: ");
 
@@ -143,7 +141,7 @@ public class CalculadoraLookAndFeel extends JFrame implements ActionListener {
                     } else {
 
                         resultado = valor1 % valor2;
-                        lblResultado.setText("Resultado: O resto da divisão do valor 1 pelo valor 2 é" + resultado);
+                        lblResultado.setText("Resultado: O resto valor 1/valor 2 é " + resultado);
                     }
 
                 } catch (Exception e) {
@@ -181,6 +179,8 @@ public class CalculadoraLookAndFeel extends JFrame implements ActionListener {
                 OceanTheme ocean = new OceanTheme();
                 UIManager.setLookAndFeel(metal);
                 SwingUtilities.updateComponentTreeUI(this);
+                this.pack();
+
 
             } catch (Exception e) {
             }
@@ -190,6 +190,8 @@ public class CalculadoraLookAndFeel extends JFrame implements ActionListener {
 
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
                 SwingUtilities.updateComponentTreeUI(this);
+                this.pack();
+
 
             } catch (Exception e) {
             }
@@ -200,6 +202,8 @@ public class CalculadoraLookAndFeel extends JFrame implements ActionListener {
 
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                 SwingUtilities.updateComponentTreeUI(this);
+                this.pack();
+
 
             } catch (Exception e) {
             }
